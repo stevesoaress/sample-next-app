@@ -15,7 +15,7 @@ variables:
   PORT: 4000
   VALUES_FILE: ./.k8s/app.values.yml
 
-Register image:
+Register image Hasura:
   extends: .base_register_stage
   stage: Registration
   variables:
@@ -23,7 +23,7 @@ Register image:
     DOCKERFILE_PATH: Dockerfile
     IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
 
-Deploy app (dev):
+Deploy app Hasura (dev):
   extends:
     - .deploy_app_stage
   except:

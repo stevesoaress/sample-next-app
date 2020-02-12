@@ -14,3 +14,24 @@ variables:
   PROJECT: "sample-next-app"
   PORT: 4000
   VALUES_FILE: ./.k8s/app.values.yml
+
+Register image:
+  extends: .base_register_stage
+  stage: Registration
+  variables:
+    CONTEXT: ./hasura
+    DOCKERFILE_PATH: Dockerfile
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
+
+Deploy app (dev):
+  extends:
+    - .deploy_app_stage
+  except:
+    refs:
+      - tags
+      - master
+  variables:
+    HOST: hasura-${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
+  environment:
+    name: review/${CI_COMMIT_REF_NAME}-dev
+    url: https://hasura-${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}

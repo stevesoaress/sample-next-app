@@ -32,6 +32,7 @@ Deploy app Hasura (dev):
       - master
   variables:
     HOST: hasura-${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
+    VALUES_FILE: ./.k8s/hasura.values.yml
   environment:
     name: review/${CI_COMMIT_REF_NAME}-dev
     url: https://hasura-${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}

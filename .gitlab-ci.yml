@@ -31,6 +31,7 @@ Deploy app Hasura (dev):
       - tags
       - master
   variables:
+    CONTEXT: hasura
     HOST: hasura-${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
     VALUES_FILE: ./.k8s/hasura.values.yml
   environment:

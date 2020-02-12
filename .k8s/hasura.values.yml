@@ -26,6 +26,20 @@ deployment:
   env:
     - name: NODE_ENV
       value: "production"
+    - name: HASURA_GRAPHQL_DATABASE_URL
+      value: "${HASURA_GRAPHQL_DATABASE_URL}"
+    - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+      value: "true"
+    - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
+      value: "anonymous"
+    - name: HASURA_GRAPHQL_ADMIN_SECRET
+      value: "secr3t"
+    - name: HASURA_GRAPHQL_JWT_SECRET
+      value: '{"type": "RS256","jwk_url": "http://${API_SRV_HOST}/api/v2/auth/jwks"}'
+    - name: HASURA_GRAPHQL_SERVER_PORT
+      value: "80"
+    - name: WEB_HOOK_URL_EMAIL_ACCOUNT_VALIDATION
+      value: "http://${API_SRV_HOST}/webhook/email-account-validation"
 
 ingress:
   enabled: true

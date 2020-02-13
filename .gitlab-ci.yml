@@ -64,6 +64,8 @@ Drop DB:
   stage: Clean Up
   # image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:0.22.0
   # entrypoint: ["drop-db-user"]
+  when: manual
+  allow_failure: true
   except:
     refs:
       - tags

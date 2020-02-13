@@ -33,7 +33,47 @@ Deploy app Hasura (dev):
   variables:
     CONTEXT: hasura
     HOST: hasura-${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
+    JWK_URL: http://${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/api/v2/auth/jwks"
     VALUES_FILE: ./.k8s/hasura.values.yml
+    HASURA_GRAPHQL_DATABASE_URL: "psql://${PGUSER}:${PGPASSWORD}@${PG_HOST}:${PG_PORT}/dev_${CI_COMMIT_SHA}"
   environment:
     name: review/${CI_COMMIT_REF_NAME}-dev
     url: https://hasura-${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
+
+Create DB:
+  stage: Deploy
+  # image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:0.22.0
+  # entrypoint: ["create-db-user"]
+  except:
+    refs:
+      - tags
+      - master
+  variables:
+    PGHOST: pg-xxx.postgres.database.azure.com
+    PGUSER: postgres@pg-xxx.postgres.database.azure.com
+    PGPASSWORD: "xxxxx"
+    PGSSLMODE: require
+    NEW_DB_NAME: dev_${CI_COMMIT_SHA}
+    NEW_USER: dev_${CI_COMMIT_SHA}@pg-xxx.postgres.database.azure.com
+    NEW_PASSWORD: "ddddd"
+  script:
+    - echo "Use some docker image and k8s secrets to create  the PG DB"
+    - echo "Store the contents fo the destroy script"
+
+Drop DB:
+  stage: Clean Up
+  # image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:0.22.0
+  # entrypoint: ["drop-db-user"]
+  except:
+    refs:
+      - tags
+      - master
+  variables:
+    PGHOST: pg-xxx.postgres.database.azure.com
+    PGUSER: postgres@pg-xxx.postgres.database.azure.com
+    PGPASSWORD: "xxxxx"
+    PGSSLMODE: require
+    DROP_DATABASE: dev_${CI_COMMIT_SHA}
+    DROP_USER: dev_${CI_COMMIT_SHA}@pg-xxx.postgres.database.azure.com
+  script:
+    - echo "Use some docker image and k8s secrets to drop the PG DB"

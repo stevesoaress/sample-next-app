@@ -17,7 +17,6 @@ variables:
 
 Register image Hasura:
   extends: .base_register_stage
-  stage: Registration
   variables:
     CONTEXT: ./hasura
     DOCKERFILE_PATH: Dockerfile

@@ -5,7 +5,6 @@ image:
   tag: master
 
 deployment:
-
   livenessProbe:
     initialDelaySeconds: 15
 

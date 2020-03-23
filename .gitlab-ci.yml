@@ -9,8 +9,40 @@ include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
     ref: v11.0.0
+    #ref: 3a5b61a79702cbbf88215e660b2a6062cf50b159
+# - project: SocialGouv/gitlab-ci-yml
+#   file: /base_azure_db_stage.yml
+#   ref: 82c62b1f49ad40beeefda665166c94227803cba5
+# - project: SocialGouv/gitlab-ci-yml
+#   file: /base_migrate_azure_db.yml
+#   ref: v9.1.1
+
+#
+# stages:
+#   - Deploy
 
 variables:
   PROJECT: "sample-next-app"
-  PORT: 4000
+  PORT: 3000
   VALUES_FILE: ./.k8s.app.values.yml
+  ENABLE_AZURE_POSTGRES: 1
+  TEST_DISABLED: 1
+  CODE_QUALITY_DISABLED: 1
+# .base_migrate_azure_db:
+#   extends:
+#     - .base_managed_pg
+#   stage: Registration
+#   allow_failure: true
+#   variables:
+#     GIT_STRATEGY: none
+#     #
+#     HELM_RENDER_ARGS: --set db.name=db_${CI_COMMIT_REF_SLUG}
+#       --set db.password=pass_${CI_COMMIT_REF_SLUG}
+#       --set db.user=user_${CI_COMMIT_REF_SLUG}
+#     HELM_APPLY_ARGS: >-
+#       -l app=migrate-db
+
+# Migrate Azure DB (dev):
+#   when: manual
+#   extends:
+#     - .base_migrate_azure_db

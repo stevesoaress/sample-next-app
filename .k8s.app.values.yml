@@ -5,6 +5,7 @@ image:
   tag: master
 
 deployment:
+  port: 3000
 
   livenessProbe:
     initialDelaySeconds: 15

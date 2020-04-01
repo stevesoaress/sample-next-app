@@ -1,0 +1,21 @@
+{
+  "name": "@sample-next-app/core",
+  "description": "sample-next-app core",
+  "version": "1.0.0",
+  "private": true,
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -p tsconfig.json -t stylish",
+    "test": "jest",
+    "watch": "yarn build --watch --preserveWatchOutput"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "jest": "^25.2.4",
+    "ts-jest": "^25.3.0",
+    "tslint": "^6.1.0",
+    "typescript": "^3.2.2"
+  }
+}

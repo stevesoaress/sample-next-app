@@ -1,0 +1,27 @@
+{
+  "name": "@sample-next-app/ui",
+  "description": "The Next.js sample-next-app ui",
+  "version": "1.0.0",
+  "private": true,
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -p tsconfig.json -t stylish",
+    "test": "jest",
+    "watch": "yarn build --watch --preserveWatchOutput"
+  },
+  "dependencies": {
+    "@sample-next-app/core": "^1.0.0",
+    "next": "^9.3.4",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "tslib": "^1.9.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "jest": "^25.2.4",
+    "ts-jest": "^25.3.0",
+    "tslint": "^6.1.0",
+    "typescript": "^3.2.2"
+  }
+}

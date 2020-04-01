@@ -1,0 +1,53 @@
+
+Packages install:
+  stage: Install
+  image: node:13-alpine
+  cache:
+    key: ${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}
+    paths:
+      - .cache
+      - node_modules
+  before_script:
+    # Remove all the packages
+    - rm -rf website
+  script:
+    - "[[ type jq ]] || apk add jq=~1"
+    # NOTE(dougladuteil): remove dependencies and devDependencies
+    # As we only install one package, we do not need the cross packages dependencies
+    # like lerna or husky...
+    - "{ rm package.json; jq 'del(.dependencies) | del(.devDependencies)' > package.json; } < package.json"
+    #
+    - yarn config set cache-folder $CI_PROJECT_DIR/.cache/yarn
+    - yarn --frozen-lockfile
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - node_modules
+
+Packages build:
+  stage: Code Quality
+  dependencies:
+    - Packages install
+  needs:
+    - Packages install
+  image: node:13-alpine
+  cache:
+    key: ${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}
+    paths:
+      - packages/core/tsconfig.tsbuildinfo
+      - packages/core/lib
+      - packages/routes/tsconfig.tsbuildinfo
+      - packages/routes/lib
+      - packages/ui/tsconfig.tsbuildinfo
+      - packages/ui/lib
+  script:
+    - yarn build:packages
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - packages/core/tsconfig.tsbuildinfo
+      - packages/core/lib
+      - packages/routes/tsconfig.tsbuildinfo
+      - packages/routes/lib
+      - packages/ui/tsconfig.tsbuildinfo
+      - packages/ui/lib

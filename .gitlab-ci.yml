@@ -2,6 +2,7 @@
 
 include:
   - website/.gitlab-ci.yml
+  - packages/.gitlab-ci.yml
 
 stages:
   - Install

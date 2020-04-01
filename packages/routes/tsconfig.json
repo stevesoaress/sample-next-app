@@ -13,7 +13,7 @@
   "exclude": ["__test__", "lib", "node_modules"],
   "references": [
     {
-      "path": "../core"
+      "path": "../ui"
     }
   ]
 }

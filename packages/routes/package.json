@@ -1,6 +1,6 @@
 {
-  "name": "@sample-next-app/ui",
-  "description": "The Next.js sample-next-app ui",
+  "name": "@sample-next-app/routes",
+  "description": "The Next.js sample-next-app routes",
   "version": "1.0.0",
   "private": true,
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
     "watch": "yarn build --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@sample-next-app/core": "^1.0.0",
+    "@sample-next-app/ui": "^1.0.0",
     "next": "^9.3.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

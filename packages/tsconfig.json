@@ -1,4 +1,4 @@
 {
   "files": [],
-  "references": [{ "path": "core" }, { "path": "ui" }]
+  "references": [{ "path": "core" }, { "path": "routes" }, { "path": "ui" }]
 }

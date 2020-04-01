@@ -11,7 +11,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@sample-next-app/core": "^1.0.0"
+    "@sample-next-app/core": "^1.0.0",
+    "next": "^9.3.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@types/node": "^13.9.8",

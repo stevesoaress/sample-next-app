@@ -8,8 +8,12 @@ Website install:
       - .cache
       - node_modules
   before_script:
-    # Remove all the packages
-    - rm -rf packages
+    - "[[ type jq ]] || apk add jq=~1"
+    #
+    # Remove dependencies of necessary packages
+    - find packages -type d
+      -maxdepth 1 | tail -n +2 | xargs -I {} sh -c
+      "{ rm {}/package.json; jq 'del(.dependencies) | del(.devDependencies)' > {}/package.json; } < {}/package.json"
   script:
     - "[[ type jq ]] || apk add jq=~1"
     # NOTE(dougladuteil): remove dependencies and devDependencies
@@ -23,3 +27,24 @@ Website install:
     expire_in: 1 day
     paths:
       - node_modules
+
+Website build:
+  stage: Build
+  needs:
+    - Website install
+    - Packages install
+    - Packages build
+  dependencies:
+    - Website install
+    - Packages build
+  image: node:13-alpine
+  cache:
+    key: ${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}
+    paths:
+      - website/.next/cache
+  script:
+    - yarn workspace website build
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - website/.next

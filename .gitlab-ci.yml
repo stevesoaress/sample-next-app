@@ -1,0 +1,11 @@
+#
+
+include:
+  - website/.gitlab-ci.yml
+
+stages:
+  - Install
+  - Code Quality
+  - Registration
+  - Deploy
+  - Notify Finished Deployment

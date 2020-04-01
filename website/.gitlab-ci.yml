@@ -1,16 +1,25 @@
-#
-# Context investigation
-#
-# - master as prod
-# - features branches env
-#
 
-include:
-  - project: SocialGouv/gitlab-ci-yml
-    file: /autodevops_simple_app.yml
-    ref: v9.1.1
-
-variables:
-  PROJECT: "sample-next-app"
-  PORT: 4000
-  VALUES_FILE: ./.k8s/app.values.yml
+Website install:
+  stage: Install
+  image: node:13-alpine
+  cache:
+    key: ${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}
+    paths:
+      - .cache
+      - node_modules
+  before_script:
+    # Remove all the packages
+    - rm -rf packages
+  script:
+    - "[[ type jq ]] || apk add jq=~1"
+    # NOTE(dougladuteil): remove dependencies and devDependencies
+    # As we only install one package, we do not need the cross packages dependencies
+    # like lerna or husky...
+    - "{ rm package.json; jq 'del(.dependencies) | del(.devDependencies)' > package.json; } < package.json"
+    #
+    - yarn config set cache-folder $CI_PROJECT_DIR/.cache/yarn
+    - yarn --frozen-lockfile
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - node_modules

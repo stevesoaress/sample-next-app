@@ -1,8 +1,15 @@
 #
 
 include:
+  - project: SocialGouv/gitlab-ci-yml
+    file: /base_register_stage.yml
+    ref: v10.0.0
+  #
+  #
+  #
   - website/.gitlab-ci.yml
   - packages/.gitlab-ci.yml
+
 
 stages:
   - Install

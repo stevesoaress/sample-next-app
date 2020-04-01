@@ -48,3 +48,18 @@ Website build:
     expire_in: 1 day
     paths:
       - website/.next
+
+Website image:
+  extends: .base_register_stage
+  stage: Registration
+  needs:
+    - Website install
+    - Website build
+    - Packages install
+    - Packages build
+  needs:
+    - Website build
+  variables:
+    CONTEXT: .
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/www
+    DOCKER_BUILD_ARGS: "-f website/Dockerfile"

@@ -2,17 +2,16 @@ FROM node:12-alpine
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY yarn.lock website/package.json/ /app/
 
 RUN yarn --production --frozen-lockfile
 
-COPY next.config.js server.js  ./
-COPY src/sentry.js ./src/sentry.js
-COPY .next/ ./.next
+COPY website/next.config.js  /app/
+COPY website/.next/ /app/
 
 USER node
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-CMD ["yarn", "start"]
+CMD ["yarn", "next", "start"]

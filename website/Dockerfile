@@ -6,8 +6,8 @@ COPY yarn.lock website/package.json/ /app/
 
 RUN yarn --production --frozen-lockfile
 
-COPY website/next.config.js  /app/
-COPY website/.next/ /app/
+COPY website/next.config.js /app/
+COPY website/.next/ /app/.next/
 
 USER node
 

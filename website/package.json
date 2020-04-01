@@ -10,16 +10,18 @@
     "lint": "eslint src/*",
     "test": "jest"
   },
+  "peerDependencies": {
+    "@sample-next-app/core": "^1.0.0"
+  },
   "dependencies": {
-    "@sample-next-app/routes": "file:../packages/routes",
     "next": "^9.3.4",
+    "next-compose-plugins": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@types/node": "^13.9.8",
     "@types/react": "^16.9.31",
-    "next-compose-plugins": "^2.2.0",
     "typescript": "^3.8.3"
   }
 }

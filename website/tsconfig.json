@@ -10,7 +10,8 @@
     "outDir": "lib",
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "types": []
+    "types": [],
+    "module": "esnext"
   },
   "exclude": [
     "node_modules"

@@ -13,9 +13,11 @@ export class HomeRoute extends Component<NextPageContext, {}> {
           <title>Sample Next App</title>
         </Head>
 
-        <h1>Hello from @sample-next-app/ui</h1>
+        <h1>Hello from @sample-next-app/routes</h1>
 
         <a href="/about">About page</a>
+        <br/>
+        <a href="/noise">Noise page</a>
       </>
     );
   }

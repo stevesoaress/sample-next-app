@@ -1,3 +1,3 @@
 //
 
-export const ui = "ui "
+export * from "./noise";

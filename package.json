@@ -1,47 +1,29 @@
 {
-  "name": "sample-next-app",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@sentry/browser": "^5.14.2",
-    "@sentry/integrations": "^5.14.2",
-    "@sentry/node": "^5.14.2",
-    "@socialgouv/bootstrap.core": "^0.2.1",
-    "@zeit/next-source-maps": "^0.0.3",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "next": "^9.3.1",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "sentry-testkit": "^3.2.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
+  "private": true,
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "lint": "eslint src/*",
-    "test": "jest"
+    "build": "run-p build:*",
+    "build:packages": "tsc -b packages --verbose",
+    "build:website": "lerna run --stream --parallel --scope website build",
+    "lint": "lerna run --stream --parallel lint",
+    "start": "lerna run --stream --parallel start",
+    "test:coverage": "lerna run --stream --parallel test -- --coverage",
+    "test": "lerna run --stream --parallel test",
+    "watch": "run-p watch:*",
+    "watch:packages": "yarn build:packages --watch --preserveWatchOutput",
+    "watch:website": "lerna run --stream --parallel --scope website watch"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@socialgouv/eslint-config-react": "^0.19.0",
-    "@socialgouv/eslint-config-recommended": "^0.19.0",
-    "eslint": "^6.8.0",
-    "husky": "^4.2.3",
-    "jest-cli": "^25.1.0",
-    "prettier": "^1.19.1"
+    "lerna": "^3.8.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.15.3",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "website"
+    ]
   }
 }

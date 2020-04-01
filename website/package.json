@@ -1,0 +1,17 @@
+{
+  "name": "website",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "eslint src/*",
+    "test": "jest"
+  },
+  "devDependencies": {
+  }
+}

@@ -42,7 +42,7 @@ variables:
       --set migrate.image.repository="${CI_REGISTRY_IMAGE}"
       --set migrate.image.tag="${CI_COMMIT_SHA}"
       --set migrate.command="env"
-      --set migrate.commandArgs[0]="-v"
+      --set migrate.args[0]="-v"
     HELM_APPLY_ARGS: >-
       -l app=migrate
 

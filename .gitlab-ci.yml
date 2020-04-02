@@ -40,7 +40,7 @@ variables:
       --set db.password=pass_${CI_JOB_ID}
       --set db.user=user_${CI_JOB_ID}
     HELM_APPLY_ARGS: >-
-      -l app=migrate-db
+      -l app=migrate
 
 Migrate Azure DB (dev):
   when: manual

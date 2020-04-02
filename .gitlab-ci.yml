@@ -8,7 +8,7 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
-    ref: v11.0.0
+    ref: revolunet-patch-3
     #ref: 3a5b61a79702cbbf88215e660b2a6062cf50b159
 # - project: SocialGouv/gitlab-ci-yml
 #   file: /base_azure_db_stage.yml

@@ -31,7 +31,7 @@ variables:
 .base_migrate_azure_db:
   extends:
     - .base_managed_pg
-  stage: Registration
+  stage: Deploy
   allow_failure: true
   variables:
     GIT_STRATEGY: none

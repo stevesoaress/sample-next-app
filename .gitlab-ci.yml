@@ -56,8 +56,6 @@ Seed Azure DB (dev):
   extends:
     - .base_migrate_azure_db
   when: manual
-  dependencies:
-    - Create Azure DB (dev)
   variables:
     GIT_STRATEGY: none
     #

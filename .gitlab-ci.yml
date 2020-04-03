@@ -4,9 +4,6 @@
 # - master as prod
 # - features branches env
 #
-variables:
-  HELM_CHART_VERSION: "v5.2.2"
-  MANAGED_DB_HELM_CHART_VERSION: "v5.2.2"
 
 include:
   - project: SocialGouv/gitlab-ci-yml

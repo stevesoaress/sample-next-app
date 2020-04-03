@@ -32,6 +32,8 @@ variables:
   extends:
     - .base_managed_pg
   stage: Deploy
+  dependencies:
+    - Create Azure DB (dev)
   allow_failure: true
   variables:
     GIT_STRATEGY: none

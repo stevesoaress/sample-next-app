@@ -39,10 +39,10 @@ variables:
     HELM_RENDER_ARGS: --set db.name=db_${CI_PIPELINE_ID}
       --set db.password=pass_${CI_PIPELINE_ID}
       --set db.user=user_${CI_PIPELINE_ID}
-      --set migrate.image.repository="${CI_REGISTRY_IMAGE}"
-      --set migrate.image.tag="${CI_COMMIT_SHA}"
-      --set migrate.command="env"
-      --set migrate.args[0]="-v"
+      --set migrate.image.repository=${CI_REGISTRY_IMAGE}
+      --set migrate.image.tag=${CI_COMMIT_SHA}
+      --set migrate.command=env
+      --set migrate.args[0]=-v
     HELM_APPLY_ARGS: >-
       -l app=migrate
 

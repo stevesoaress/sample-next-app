@@ -62,9 +62,9 @@ Seed Azure DB (dev):
     HELM_RENDER_ARGS: --set db.name=db_${CI_PIPELINE_ID}
       --set db.password=pass_${CI_PIPELINE_ID}
       --set db.user=user_${CI_PIPELINE_ID}
-      --set migrate.image.repository=${CI_REGISTRY_IMAGE}
-      --set migrate.image.tag=${CI_COMMIT_SHA}
-      --set migrate.command=yarn
-      --set migrate.args[0]=seed
+      --set seed.image.repository=${CI_REGISTRY_IMAGE}
+      --set seed.image.tag=${CI_COMMIT_SHA}
+      --set seed.command=yarn
+      --set seed.args[0]=seed
     HELM_APPLY_ARGS: >-
       -l app=seed

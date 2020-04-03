@@ -33,8 +33,8 @@
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint src/*",
     "test": "jest",
-    "migrate:latest": "echo migrate",
-    "seed:run": "echo seeds"
+    "migrate": "echo migrate && env",
+    "seed": "echo seeds && env"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

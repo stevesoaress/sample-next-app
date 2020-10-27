@@ -7,7 +7,7 @@ A sample SSR Next.js app with :
 - ✅ sentry
 - ✅ matomo
 - ✅ jest tests
-- ✅ [@SocialGouv linters](https://github.com/SocialGouv/linters/)
+- ✅ [@SocialGouv linters](https://github.com/SocialGouv/flinters/)
 - ✅ [@SocialGouv bootstrap](https://github.com/SocialGouv/bootstrap)
 - ✅ @SocialGouv polyfill.io
 - ✅ precommit hooks
